@@ -2,9 +2,29 @@ import 'dotenv/config';
 import express from 'express';
 import multer from 'multer';
 import { GoogleGenAI } from '@google/genai';
+import path from 'path';
+import fs from 'fs';
 
 const app = express();
-const upload = multer();
+
+// Buat folder uploads jika belum ada
+const uploadsDir = 'uploads';
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+}
+
+// Konfigurasi multer untuk simpan ke disk
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, uploadsDir);
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({ storage });
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 const GEMINI_MODEL = "gemini-2.5-flash";

@@ -229,8 +229,11 @@ gemini-flash-api/
 ├── package.json       # Dependencies
 ├── .env               # Environment variables (jangan commit!)
 ├── .gitignore         # Git ignore file
-└── README.md          # Dokumentasi ini
+├── README.md          # Dokumentasi ini
+└── uploads/           # Folder untuk menyimpan file yang diupload (auto-generated)
 ```
+
+**Catatan:** Folder `uploads/` akan terbentuk otomatis saat server berjalan dan file pertama diupload.
 
 ## Model AI
 
@@ -268,6 +271,7 @@ const PORT = 3000; // Ubah ke port yang diinginkan
 2. **Untuk analisis gambar**, berikan prompt yang spesifik untuk hasil lebih akurat
 3. **Untuk transkripsi audio**, pastikan audio berkualitas baik
 4. **Test dengan Postman**, download [Postman](https://www.postman.com/downloads/) untuk testing yang lebih mudah
+5. **File upload otomatis disimpan** di folder `uploads/` dengan nama unik (timestamp + random string) untuk mencegah duplikasi
 
 ## Troubleshooting
 
