@@ -156,7 +156,7 @@ app.post('/generate-from-audio', upload.single('audio'), async (req, res) => {
 // ============== ENGLISH TEACHER ENDPOINTS ==============
 
 // Endpoint: Check Grammar - Perbaiki dan jelaskan kesalahan grammar
-app.post('/check-grammar', express.json(), async (req, res) => {
+app.post('/check-grammar', async (req, res) => {
   const { text, studentLevel = 'Intermediate' } = req.body;
 
   if (!text) {
@@ -186,7 +186,7 @@ Format your response clearly with each section numbered.`;
 });
 
 // Endpoint: Vocabulary Lesson - Ajarkan vocabulary baru
-app.post('/vocabulary-lesson', express.json(), async (req, res) => {
+app.post('/vocabulary-lesson', async (req, res) => {
   const { word, context = '', studentLevel = 'Intermediate' } = req.body;
 
   if (!word) {
@@ -220,7 +220,7 @@ Make it engaging and easy to understand.`;
 });
 
 // Endpoint: Pronunciation Guide - Panduan pronunciation
-app.post('/pronunciation-guide', express.json(), async (req, res) => {
+app.post('/pronunciation-guide', async (req, res) => {
   const { words, studentLevel = 'Beginner' } = req.body;
 
   if (!words || words.length === 0) {
@@ -253,7 +253,7 @@ Make the guide beginner-friendly with clear explanations.`;
 });
 
 // Endpoint: Conversation Practice - Latih percakapan
-app.post('/conversation-practice', express.json(), async (req, res) => {
+app.post('/conversation-practice', async (req, res) => {
   const { topic, studentLevel = 'Intermediate', userMessage = '' } = req.body;
 
   if (!topic) {
@@ -290,7 +290,7 @@ Keep the response conversational, friendly, and encouraging!`;
 });
 
 // Endpoint: Quiz - Buat kuis pembelajaran
-app.post('/quiz', express.json(), async (req, res) => {
+app.post('/quiz', async (req, res) => {
   const { topic, questionCount = 5, studentLevel = 'Intermediate', type = 'multiple-choice' } = req.body;
 
   if (!topic) {
